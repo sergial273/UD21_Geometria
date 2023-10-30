@@ -16,19 +16,20 @@ public class AppTest {
     private final PrintStream originalOut = System.out;
 
     @BeforeEach
-    public void setUp() {
+    public void before() {
         System.setOut(new PrintStream(outContent));
     }
 
     @AfterEach
-    public void tearDown() {
+    public void after() {
         System.setOut(originalOut);
         outContent.reset();
     }
     
     @Test
     public void testAppMain() {
-    	App n = new App();
+    	@SuppressWarnings("unused")
+		App n = new App();
         App.main(new String[]{});
         String expectedOutput = "Geometria [id=2, nom=Circulo, area=12.5664]\r\n";
         assertEquals(expectedOutput, outContent.toString());
